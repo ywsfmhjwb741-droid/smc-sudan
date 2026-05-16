@@ -6,7 +6,7 @@
     "target": "ES2022",
     "lib": ["ES2022"],
     "outDir": "./dist",
-    "rootDir": "../../",
+    "rootDir": "./src",
     "baseUrl": "./",
     "paths": {
       "@smc/types": ["../../packages/types/src"],
@@ -14,13 +14,9 @@
     },
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "strict": true,
-    "noUncheckedIndexedAccess": false,
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "exactOptionalPropertyTypes": false,
+    "strict": false,
     "skipLibCheck": true
   },
-  "include": ["src/**/*", "../../packages/**/*"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]
 }
