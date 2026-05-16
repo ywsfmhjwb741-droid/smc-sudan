@@ -4,8 +4,8 @@ import { httpBatchLink } from "@trpc/client";
 import { createTRPCReact } from "@trpc/react-query";
 import { useState } from "react";
 
-// @ts-nocheck
-export const trpc = createTRPCReact();
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const trpc = createTRPCReact<any>();
 
 function getBaseUrl() {
   if (typeof window !== "undefined") return "";
@@ -16,13 +16,13 @@ function getBaseUrl() {
 export function TrpcProvider({ children }: { children: React.ReactNode }) {
   const [queryClient] = useState(() => new QueryClient());
   const [trpcClient] = useState(() =>
-    (trpc as any).createClient({
+    trpc.createClient({
       links: [httpBatchLink({ url: `${getBaseUrl()}/api/trpc` })],
     })
   );
   return (
-    <(trpc as any).Provider client={trpcClient} queryClient={queryClient}>
+    <trpc.Provider client={trpcClient} queryClient={queryClient}>
       <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-    </(trpc as any).Provider>
+    </trpc.Provider>
   );
 }
