@@ -6,9 +6,10 @@ import { createTRPCReact } from "@trpc/react-query";
 import { useState } from "react";
 
 // Import type only - no runtime dependency on API package
-type AppRouter = any;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const trpc = createTRPCReact<any>();
 
-export const trpc = createTRPCReact<AppRouter>();
+
 
 function getBaseUrl() {
   if (typeof window !== "undefined") return "";
