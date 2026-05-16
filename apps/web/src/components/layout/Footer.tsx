@@ -9,7 +9,8 @@ export function Footer() {
             <div className="flex items-center gap-2.5 mb-4">
               <div className="w-8 h-8 rounded-lg bg-brand-gradient flex items-center justify-center">
                 <Zap className="w-4 h-4 text-white" />
-              </div>
+              
+</div>
               <span className="font-display font-bold text-text-primary text-lg">
                 SMC Sudan MOBA Community
               </span>
