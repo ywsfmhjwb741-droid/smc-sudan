@@ -1,0 +1,216 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Rajdhani:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── CSS Variables ─────────────────────────────────────────── */
+
+:root {
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #0f0f1a;
+  --bg-tertiary: #141428;
+  --bg-card: #1a1a2e;
+  --bg-border: #2a2a4a;
+
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+
+  --brand-primary: #6366f1;
+  --brand-secondary: #4f46e5;
+  --gold: #f59e0b;
+
+  --rank-warrior: #9ca3af;
+  --rank-elite: #34d399;
+  --rank-master: #60a5fa;
+  --rank-grandmaster: #a78bfa;
+  --rank-epic: #f472b6;
+  --rank-legend: #fbbf24;
+  --rank-mythic: #f87171;
+  --rank-mythic-honor: #fb923c;
+  --rank-mythic-glory: #e879f9;
+  --rank-mythic-immortal: #38bdf8;
+}
+
+/* ─── Base Styles ────────────────────────────────────────────── */
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bg-border);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--brand-primary);
+}
+
+/* ─── Typography ─────────────────────────────────────────────── */
+
+.font-display {
+  font-family: 'Rajdhani', 'Inter', sans-serif;
+  letter-spacing: 0.02em;
+}
+
+/* ─── Component Utilities ────────────────────────────────────── */
+
+@layer components {
+  .card {
+    @apply bg-bg-card border border-bg-border rounded-xl shadow-card;
+  }
+
+  .card-hover {
+    @apply card transition-all duration-200 hover:border-bg-borderHover hover:shadow-card-hover hover:-translate-y-0.5;
+  }
+
+  .btn-primary {
+    @apply bg-brand-gradient text-white font-semibold px-6 py-2.5 rounded-lg
+           hover:opacity-90 active:scale-95 transition-all duration-150
+           shadow-brand hover:shadow-brand-lg;
+  }
+
+  .btn-secondary {
+    @apply bg-bg-card border border-bg-border text-text-primary font-medium px-6 py-2.5 rounded-lg
+           hover:border-brand-500 hover:text-brand-400 transition-all duration-150;
+  }
+
+  .btn-ghost {
+    @apply text-text-secondary font-medium px-4 py-2 rounded-lg
+           hover:bg-bg-card hover:text-text-primary transition-all duration-150;
+  }
+
+  .input-field {
+    @apply w-full bg-bg-tertiary border border-bg-border text-text-primary
+           rounded-lg px-4 py-3 placeholder:text-text-muted
+           focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500/50
+           transition-all duration-150;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .section-title {
+    @apply font-display text-2xl font-bold text-text-primary tracking-wide;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-400 to-purple-400;
+  }
+
+  .glow-line {
+    @apply h-px bg-gradient-to-r from-transparent via-brand-500/50 to-transparent;
+  }
+
+  /* Rank badge colors */
+  .rank-warrior { color: var(--rank-warrior); }
+  .rank-elite { color: var(--rank-elite); }
+  .rank-master { color: var(--rank-master); }
+  .rank-grandmaster { color: var(--rank-grandmaster); }
+  .rank-epic { color: var(--rank-epic); }
+  .rank-legend { color: var(--rank-legend); }
+  .rank-mythic { color: var(--rank-mythic); }
+  .rank-mythic-honor { color: var(--rank-mythic-honor); }
+  .rank-mythic-glory { color: var(--rank-mythic-glory); }
+  .rank-mythic-immortal { color: var(--rank-mythic-immortal); }
+
+  /* Leaderboard row */
+  .leaderboard-row {
+    @apply flex items-center gap-4 px-4 py-3 rounded-lg
+           border border-transparent hover:bg-bg-card hover:border-bg-border
+           transition-all duration-150 cursor-pointer;
+  }
+
+  .leaderboard-row-top3 {
+    @apply leaderboard-row bg-bg-card border-bg-border;
+  }
+
+  /* Shimmer loading */
+  .shimmer {
+    @apply bg-gradient-to-r from-bg-card via-bg-tertiary to-bg-card
+           bg-[length:200%_100%] animate-shimmer;
+  }
+}
+
+/* ─── Rank Glow Effects ──────────────────────────────────────── */
+
+.rank-glow-mythic-immortal {
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+  border-color: rgba(56, 189, 248, 0.3) !important;
+}
+
+.rank-glow-mythic-glory {
+  box-shadow: 0 0 20px rgba(232, 121, 249, 0.4);
+  border-color: rgba(232, 121, 249, 0.3) !important;
+}
+
+.rank-glow-mythic-honor {
+  box-shadow: 0 0 16px rgba(251, 146, 60, 0.35);
+  border-color: rgba(251, 146, 60, 0.3) !important;
+}
+
+.rank-glow-mythic {
+  box-shadow: 0 0 16px rgba(248, 113, 113, 0.35);
+}
+
+.rank-glow-legend {
+  box-shadow: 0 0 12px rgba(251, 191, 36, 0.3);
+}
+
+/* ─── Animated Background ────────────────────────────────────── */
+
+.animated-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.animated-bg::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(ellipse at 20% 20%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
+              radial-gradient(ellipse at 80% 80%, rgba(124, 58, 237, 0.06) 0%, transparent 50%);
+  animation: float 8s ease-in-out infinite;
+}
+
+/* ─── Page Transitions ───────────────────────────────────────── */
+
+.page-enter {
+  animation: fadeIn 0.3s ease-in-out;
+}
