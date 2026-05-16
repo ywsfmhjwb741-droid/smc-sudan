@@ -9,8 +9,7 @@ export function Footer() {
             <div className="flex items-center gap-2.5 mb-4">
               <div className="w-8 h-8 rounded-lg bg-brand-gradient flex items-center justify-center">
                 <Zap className="w-4 h-4 text-white" />
-              
-</div>
+              </div>
               <span className="font-display font-bold text-text-primary text-lg">
                 SMC Sudan MOBA Community
               </span>
@@ -40,12 +39,12 @@ export function Footer() {
             <h4 className="font-semibold text-text-primary text-sm mb-4">Community</h4>
             <ul className="space-y-2">
               <li>
-                <a href="https://discord.gg/sVzkQUG9r" className="text-text-secondary text-sm hover:text-text-primary transition-colors">
+                <a href="https://discord.gg/sVzkQUG9r" target="_blank" rel="noreferrer" className="text-text-secondary text-sm hover:text-text-primary transition-colors">
                   Discord
                 </a>
               </li>
               <li>
-                <a href="https://www.facebook.com/share/1ByVT4kKz3/" className="text-text-secondary text-sm hover:text-text-primary transition-colors">
+                <a href="https://www.facebook.com/share/1ByVT4kKz3/" target="_blank" rel="noreferrer" className="text-text-secondary text-sm hover:text-text-primary transition-colors">
                   Facebook
                 </a>
               </li>
