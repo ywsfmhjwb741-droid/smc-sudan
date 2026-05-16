@@ -2,28 +2,15 @@
   "name": "smc-sudan-moba-community",
   "version": "1.0.0",
   "private": true,
-  "description": "SMC Sudan MOBA Community - MLBB Leaderboard & Player Tracking Platform",
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
-    "lint": "turbo run lint",
-    "type-check": "turbo run type-check",
-    "db:generate": "turbo run db:generate",
-    "db:migrate": "turbo run db:migrate",
-    "db:push": "turbo run db:push",
-    "db:studio": "turbo run db:studio",
-    "clean": "turbo run clean && rm -rf node_modules"
+    "lint": "turbo run lint"
   },
   "devDependencies": {
     "turbo": "^2.3.3",
     "typescript": "^5.7.2",
-    "@types/node": "^22.10.5",
     "prettier": "^3.4.2",
     "eslint": "^9.17.0"
-  },
-  "engines": {
-    "node": ">=20.0.0",
-    "pnpm": ">=9.0.0"
+  }
 }
-}
-  
