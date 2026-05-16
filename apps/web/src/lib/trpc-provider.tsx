@@ -6,7 +6,7 @@ import { createTRPCReact } from "@trpc/react-query";
 import { useState } from "react";
 
 // Import type only - no runtime dependency on API package
-type AppRouter = Record<string, unknown>;
+type AppRouter = any;
 
 export const trpc = createTRPCReact<AppRouter>();
 
