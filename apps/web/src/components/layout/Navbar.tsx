@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Trophy, Users, Search, Menu, X, Zap } from "lucide-react";
+import { Trophy, Users, Search, Menu, X } from "lucide-react";
 import { clsx } from "clsx";
 
 const navLinks = [
@@ -19,11 +19,8 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-bg-border bg-bg-primary/80 backdrop-blur-xl">
       <nav className="container mx-auto px-4 h-16 flex items-center justify-between">
-        {/* Logo */}
         <Link href="/" className="flex items-center gap-2.5 group">
-          <div className="w-8 h-8 rounded-lg bg-brand-gradient flex items-center justify-center shadow-brand group-hover:shadow-brand-lg transition-shadow">
-            <Zap className="w-4 h-4 text-white" />
-          </div>
+          <img src="/logo.jpeg" alt="SMC Logo" className="w-8 h-8 rounded-lg object-cover" />
           <div>
             <span className="font-display font-bold text-text-primary text-lg leading-none">
               SMC
@@ -34,7 +31,6 @@ export function Navbar() {
           </div>
         </Link>
 
-        {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-1">
           {navLinks.map((link) => (
             <Link
@@ -53,7 +49,6 @@ export function Navbar() {
           ))}
         </div>
 
-        {/* Right Actions */}
         <div className="flex items-center gap-3">
           <Link
             href="/players/search"
@@ -66,7 +61,6 @@ export function Navbar() {
             </kbd>
           </Link>
 
-          {/* Mobile menu toggle */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             className="md:hidden p-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-bg-card transition-all"
@@ -76,7 +70,6 @@ export function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
