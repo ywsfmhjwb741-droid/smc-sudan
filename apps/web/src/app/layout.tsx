@@ -3,7 +3,6 @@ import "../styles/globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { TrpcProvider } from "@/lib/trpc-provider";
-
 export const metadata: Metadata = {
   title: {
     default: "SMC Sudan MOBA Community",
@@ -31,13 +30,14 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  icons: {
+    icon: "/favicon.jpg",
+  },
 };
-
 export const viewport: Viewport = {
   themeColor: "#0a0a0f",
   colorScheme: "dark",
 };
-
 export default function RootLayout({
   children,
 }: {
