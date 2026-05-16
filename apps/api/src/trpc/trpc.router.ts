@@ -110,4 +110,4 @@ export class TrpcRouter {
   }
 }
 
-export type AppRouter = ReturnType<TrpcRouter["appRouter"]>;
+export type AppRouter = any;
