@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   icons: {
-    icon: "/favicon.jpg",
+    icon: "/logo.jpeg",
   },
 };
 export const viewport: Viewport = {
