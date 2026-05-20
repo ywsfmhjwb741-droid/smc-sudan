@@ -1,5 +1,5 @@
-import { Injectable } from "@nestjs/common";
-import { InjectDatabase } from "../../database/database.module";
+import { Injectable, Inject } from "@nestjs/common";
+import { DATABASE_TOKEN } from "../../database/database.module";
 import { NodePgDatabase } from "drizzle-orm/node-postgres";
 import * as schema from "../../database/schema/index";
 import { desc } from "drizzle-orm";
@@ -7,14 +7,14 @@ import { desc } from "drizzle-orm";
 @Injectable()
 export class LeaderboardService {
   constructor(
-    @InjectDatabase() private readonly db: NodePgDatabase<typeof schema>
+    @Inject(DATABASE_TOKEN) private readonly db: NodePgDatabase<typeof schema>
   ) {}
 
   async getLeaderboard() {
-    return this.db
-      .select()
-      .from(schema.playerStats)
+    return this.db.select().from(schema.playerStats)
       .orderBy(desc(schema.playerStats.leaderboardWeight))
       .limit(100);
   }
+
+  async getSnapshot() { return []; }
 }

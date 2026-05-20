@@ -1,36 +1,31 @@
 import { Injectable } from "@nestjs/common";
-import { TrpcService } from "./trpc.module";
+import { initTRPC } from "@trpc/server";
 import { PlayersService } from "../modules/players/players.service";
 import { LeaderboardService } from "../modules/leaderboard/leaderboard.service";
 import { z } from "zod";
 
+const t = initTRPC.create();
+
 @Injectable()
 export class TrpcRouter {
   constructor(
-    private readonly trpc: TrpcService,
     private readonly players: PlayersService,
     private readonly leaderboard: LeaderboardService,
   ) {}
 
   appRouter() {
-    return this.trpc.router({
-      players: this.trpc.router({
-        register: this.trpc.procedure
-          .input(z.object({ mlbbId: z.string(), serverId: z.string().optional(), username: z.string() }))
-          .mutation(async ({ input }) => {
-            return this.players.registerPlayer(input);
-          }),
-        list: this.trpc.procedure.query(async () => {
-          return this.players.getPlayers();
-        }),
+    return t.router({
+      players: t.router({
+        register: t.procedure
+          .input(z.object({ mlbbId: z.string(), username: z.string() }))
+          .mutation(async ({ input }) => this.players.registerPlayer(input)),
+        list: t.procedure.query(async () => this.players.getPlayers()),
       }),
-      leaderboard: this.trpc.router({
-        get: this.trpc.procedure.query(async () => {
-          return this.leaderboard.getLeaderboard();
-        }),
+      leaderboard: t.router({
+        get: t.procedure.query(async () => this.leaderboard.getLeaderboard()),
       }),
     });
   }
 }
 
-export type AppRouter = any;
+export type AppRouter = ReturnType<TrpcRouter["appRouter"]>;

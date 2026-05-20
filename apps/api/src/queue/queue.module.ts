@@ -1,9 +1,8 @@
-import { Module, Global } from "@nestjs/common";
-import { SyncQueueService, SyncWorkerService } from "./sync.processor";
-
+ import { Module, Global } from "@nestjs/common";
+import { SyncProcessor } from "./sync.processor";
 @Global()
 @Module({
-  providers: [SyncQueueService, SyncWorkerService],
-  exports: [SyncQueueService],
+  providers: [SyncProcessor],
+  exports: [SyncProcessor],
 })
 export class QueueModule {}

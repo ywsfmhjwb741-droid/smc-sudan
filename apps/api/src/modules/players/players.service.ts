@@ -1,12 +1,13 @@
-import { Injectable } from "@nestjs/common";
-import { InjectDatabase } from "../../database/database.module";
+import { Injectable, Inject } from "@nestjs/common";
+import { DATABASE_TOKEN } from "../../database/database.module";
 import { NodePgDatabase } from "drizzle-orm/node-postgres";
 import * as schema from "../../database/schema/index";
+import { eq } from "drizzle-orm";
 
 @Injectable()
 export class PlayersService {
   constructor(
-    @InjectDatabase() private readonly db: NodePgDatabase<typeof schema>
+    @Inject(DATABASE_TOKEN) private readonly db: NodePgDatabase<typeof schema>
   ) {}
 
   async registerPlayer(data: { mlbbId: string; serverId?: string; username: string }) {
@@ -14,7 +15,6 @@ export class PlayersService {
       .insert(schema.players)
       .values({
         mlbbId: data.mlbbId,
-        serverId: data.serverId,
         username: data.username,
       })
       .returning();
@@ -26,10 +26,10 @@ export class PlayersService {
   }
 
   async getPlayer(id: string) {
-    const players = await this.db
+    const result = await this.db
       .select()
       .from(schema.players)
-      .where(schema.players.id === id as any);
-    return players[0];
+      .where(eq(schema.players.id, id));
+    return result[0];
   }
 }

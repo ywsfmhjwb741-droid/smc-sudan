@@ -1,28 +1,35 @@
-import { Injectable } from "@nestjs/common";
-import { InjectDatabase } from "../../database/database.module";
+import { Injectable, Inject } from "@nestjs/common";
+import { DATABASE_TOKEN } from "../../database/database.module";
 import { NodePgDatabase } from "drizzle-orm/node-postgres";
 import * as schema from "../../database/schema/index";
+import { eq } from "drizzle-orm";
 
 @Injectable()
 export class AdminService {
   constructor(
-    @InjectDatabase() private readonly db: NodePgDatabase<typeof schema>
+    @Inject(DATABASE_TOKEN) private readonly db: NodePgDatabase<typeof schema>
   ) {}
 
-  async getPlayers() {
-    return this.db.select().from(schema.players);
+  async getDashboardStats() {
+    const players = await this.db.select().from(schema.players);
+    return { totalPlayers: players.length };
   }
 
   async banPlayer(id: string, reason: string) {
-    return this.db
-      .update(schema.players)
+    return this.db.update(schema.players)
       .set({ isBanned: true, banReason: reason, updatedAt: new Date() })
-      .where(schema.players.id === id as any);
+      .where(eq(schema.players.id, id));
   }
 
   async unbanPlayer(id: string) {
-    return this.db
-      .update(schema.players)
-      .set({ isBanned: false, banReason: null, updatedAt: new Date() });
+    return this.db.update(schema.players)
+      .set({ isBanned: false, banReason: null, updatedAt: new Date() })
+      .where(eq(schema.players.id, id));
   }
+
+  async forceSyncPlayer(id: string) { return { id }; }
+  async getFailedSyncJobs() { return []; }
+  async retryFailedJob(id: string) { return { id }; }
+  async pauseSyncQueue() { return true; }
+  async resumeSyncQueue() { return true; }
 }
