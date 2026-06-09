@@ -16,7 +16,7 @@ export function Footer() {
             </div>
             <p className="text-text-secondary text-sm leading-relaxed max-w-xs">
               Sudan&apos;s premier MLBB leaderboard and player tracking platform.
-              Built for the community, by the community.
+             Built for the community,  by Hirokai影.
             </p>
           </div>
           <div>
@@ -57,7 +57,7 @@ export function Footer() {
             © {new Date().getFullYear()} SMC Sudan MOBA Community. Not affiliated with Moonton.
           </p>
           <p className="text-text-muted text-xs">
-            Built with ❤️ for the Sudanese MLBB community
+            Built with Hirokai影 for the Sudanese MLBB community
           </p>
         </div>
       </div>
