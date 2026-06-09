@@ -6,7 +6,7 @@
     "target": "ES2022",
     "lib": ["ES2022"],
     "outDir": "./dist",
-    "rootDir": "../../",
+    "rootDir": "./src",
     "baseUrl": "./",
     "paths": {
       "@smc/types": ["../../packages/types/src"],
@@ -20,6 +20,6 @@
     "noUnusedParameters": false,
     "noImplicitAny": false
   },
-  "include": ["src/**/*", "../../packages/**/*"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]
 }
