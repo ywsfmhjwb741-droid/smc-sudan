@@ -9,12 +9,13 @@ export class PlayersService {
   constructor(
     @Inject(DATABASE_TOKEN) private readonly db: NodePgDatabase<typeof schema>
   ) {}
-async registerPlayer(data: { mlbbId?: string; serverId?: string; username?: string }) {
+
+  async registerPlayer(data: { mlbbId?: string; serverId?: string; username?: string }) {
     const [player] = await this.db
       .insert(schema.players)
       .values({
-        mlbbId: data.mlbbId,
-        username: data.username,
+        mlbbId: data.mlbbId ?? "",
+        username: data.username ?? "",
       })
       .returning();
     return player;
