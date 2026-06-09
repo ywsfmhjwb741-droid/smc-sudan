@@ -17,13 +17,13 @@ export class AdminService {
 
   async banPlayer(id: string, reason: string) {
     return this.db.update(schema.players)
-      .set({ isBanned: true, banReason: reason, updatedAt: new Date() })
+.set({ updatedAt: new Date() })
       .where(eq(schema.players.id, id));
   }
 
   async unbanPlayer(id: string) {
     return this.db.update(schema.players)
-      .set({ isBanned: false, banReason: null, updatedAt: new Date() })
+      .set({ updatedAt: new Date() })
       .where(eq(schema.players.id, id));
   }
 
