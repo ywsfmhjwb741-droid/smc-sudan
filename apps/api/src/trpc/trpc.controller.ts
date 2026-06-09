@@ -9,15 +9,13 @@ export class TrpcController {
 
   @All("*")
   async handle(@Req() req: Request, @Res() res: Response) {
-    const router = this.trpcRouter.appRouter;
-
+    const router = this.trpcRouter.appRouter();
     const response = await fetchRequestHandler({
       endpoint: "/api/v1/trpc",
       req: req as unknown as globalThis.Request,
-      router,
+      router: router as any,
       createContext: () => ({}),
     });
-
     res.status(response.status);
     response.headers.forEach((value, key) => {
       res.setHeader(key, value);

@@ -1,6 +1,7 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
+"strictNullChecks": true
     "module": "CommonJS",
     "moduleResolution": "Node",
     "target": "ES2022",

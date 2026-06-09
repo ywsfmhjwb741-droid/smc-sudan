@@ -15,7 +15,7 @@ export class AdminService {
     return { totalPlayers: players.length };
   }
 
-  async banPlayer(id: string, reason: string) {
+  async unbanPlayer(id: string, reason: string) {
     return this.db.update(schema.players)
 .set({ updatedAt: new Date() })
       .where(eq(schema.players.id, id));

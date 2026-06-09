@@ -17,7 +17,7 @@ export class TrpcRouter {
     return t.router({
       players: t.router({
         register: t.procedure
-          .input(z.object({ mlbbId: z.string(), username: z.string() }))
+          .input(z.object({ mlbbId: z.string().optional(), username: z.string().optional() }))
           .mutation(async ({ input }) => this.players.registerPlayer(input)),
         list: t.procedure.query(async () => this.players.getPlayers()),
       }),
