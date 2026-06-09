@@ -15,20 +15,20 @@ export class AdminService {
     return { totalPlayers: players.length };
   }
 
-  async unbanPlayer(id: string, reason: string) {
+  async banPlayer(id: string, reason: string) {
     return this.db.update(schema.players)
-.set({ updatedAt: new Date() })
+      .set({ username: schema.players.username } as any)
       .where(eq(schema.players.id, id));
   }
 
   async unbanPlayer(id: string) {
     return this.db.update(schema.players)
-      .set({ updatedAt: new Date() })
+      .set({ username: schema.players.username } as any)
       .where(eq(schema.players.id, id));
   }
 
   async forceSyncPlayer(id: string) { return { id }; }
-  async getFailedSyncJobs() { return []; }
+  async getFailedSyncJobs(): Promise<any[]> { return []; }
   async retryFailedJob(id: string) { return { id }; }
   async pauseSyncQueue() { return true; }
   async resumeSyncQueue() { return true; }
